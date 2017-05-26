@@ -1,0 +1,152 @@
+A typical PA system scenario is shown in Fig. 1: a number of microphones are positioned such as to pick up the sound of possibly multiple sound sources that are of interest. The microphone signals are then routed to the mixing console and may be subject to additional processing, such as dynamic range processing, artificial reverberation, etc., which is usually performed in the digital domain. The mixed signals are then amplified and sent to the loudspeakers, which are often arranged in a group-wise fashion (i.e., all the loudspeakers in the same loudspeaker group broadcast the same signal).
+典型的なPAシステムのシナリオが図1に示されている。興味のある複数の音源の音を拾うような多数のマイクロホンが配置されている。 次いで、マイクロフォン信号は、ミキシングコンソールに送られ、通常はデジタル領域で実行されるダイナミックレンジ処理、人工的な残響などの追加の処理を受けることがある。 混合された信号は増幅され、しばしばグループ単位で配置される（すなわち、同一のスピーカグループ内のすべてのスピーカは同じ信号を同報通信する）スピーカに送られる。
+
+Usually, the microphones and loudspeakers are positioned in such a way that, taking into account their directivity, the loudspeaker sound does not directly hit the microphones, i.e., no direct acoustic coupling between the loudspeakers and the microphones exists. However, in nearly every sound reinforcement application it is unavoidable that the loudspeaker sound is reflected by the boundaries (walls, floor, and ceiling) of the acoustic environment (denoted as the "room") and by subjects and objects within the environment. These reflections constitute an indirect acoustic coupling between the loudspeakers and the microphones of the system.
+通常、マイクロフォンおよびスピーカは、それらの指向性を考慮して、スピーカ音がマイクロフォンに直接当たらないように、すなわち、スピーカとマイクロホンとの間の直接的な音響結合が存在しないように配置される。 しかし、ほぼすべての強化アプリケーションにおいて、ラウドスピーカの音は、音響環境（「部屋」と表示される）の境界（壁、床、および天井）および環境内の対象および物体によって反射されることは避けられない。 これらの反射は、スピーカとシステムのマイクロフォンとの間の間接的な音響結合を構成する。
+
+
+The PA scenario can be modeled in a discrete-time context as shown in Fig. 2. All continuous-time signals involved are assumed to be bandlimited in such a way that they can be sampled at a standard sampling frequency (e.g., fs = 16 kHz in speech applications, fs = 44.1 kHz in audio applications) and represented by their discrete-time counterparts.
+PAシナリオは、図2に示すように、離散時間コンテキストでモデル化することができます。 関連するすべての連続時間信号は、標準サンプリング周波数（例えば、音声(会話)アプリケーションではfs = 16kHz、音声（音楽）アプリケーションではfs = 44.1kHz）でサンプリングされ、それらの信号によって表されるように帯域制限されていると仮定されます。 離散時間対応物。
+
+If we represent the S source signals by vi(t), i = 1, . . . , S, the corresponding S microphone signals as yi(t), i = 1, . . . , S, and the L loudspeaker signals as uj(t), j = 1, . . . , L, then the discrete-time closed-loop system model in Fig. 2 can be described by the following relations:
+もし我々がS個のソース信号をvi（t）、i = 1 ,. 。 。 、S、対応するS個のマイクロフォン信号をy i（t）、i = 1 ,. 。 。 、SおよびLスピーカ信号をuj（t）、j = 1 ,. 。 。 、Lとすると、図2の離散時間閉ループ系モデルは、以下の関係式で表すことができる。
+式(1)
+式(2)
+
+Here, the source signal, microphone signal, and loudspeaker signal vectors are defined as
+ここで、ソース信号、マイクロホン信号およびスピーカ信号ベクトルは、
+式(3)~(5)
+
+and the multichannel acoustic feedback path F(q,t) and electroacoustic forward path characteristics G[.,t] are defined below.
+マルチチャネル音響フィードバック経路F（q、t）と電気音響フォワード経路特性G [・、t]は以下に定義される。
+
+Between each loudspeaker–microphone pair (i,j), j = 1, . . . ,L, i = 1, . . . ,S, there exists an acoustic coupling, which can be modeled by the acoustic feedback path transfer function
+各ラウドスピーカ - マイクロフォン対（i、j）、j = 1 ,. 。 。 、L、i = 1 ,. 。 。 、Sには、音響結合が存在し、音響フィードバック経路伝達関数によってモデル化することができる
+式(6)
+
+where q denotes the discrete-time shift operator, i.e., q^(-k)uj(t) =uj(t-k). The multichannel feedback path matrix in (1) is then defined as an S×L polynomial matrix
+ここで、qは離散時間シフト演算子、すなわちq ^（ - k）uj（t）= uj（t-o）を示す。 （1）のマルチチャネルフィードバック経路行列は、S×L多項式行列
+式(7)
+
+The acoustic feedback path model is linear, time varying, and of finite order nF.
+音響フィードバック経路モデルは線形であり、時間変化し、有限次数nFである。
+
+The linearity assumption is generally considered to be a reasonable one, since the effects of sound propagation and reflections in the acoustic environment (i.e., signal attenuations and time delays) are quasi level independent.
+線形性の仮定は、音響環境における音の伝搬および反射の影響（すなわち、信号減衰および時間遅延）がほとんど依存しないので、一般に合理的なものとみなされる。
+
+The finite-order assumption, which contrasts with the infinite impulse response (IIR) nature of room acoustics, can be justified by the observation that a typical room impulse response (RIR) has an exponentially decaying envelope such that it can be truncated to have nF + 1 < ∞ coefficients.
+室内音響の無限インパルス応答（IIR）の性質とは対照的に、有限次の仮定は、典型的な室内インパルス応答（RIR）が指数関数的に減衰する包絡線を有するという観測によって正当化される。 nF + 1 <∞〕の係数である。 
+
+
+An example RIR, which was measured at [fs = 44.1 kHz] and truncated at a length of [nF + 1 = 4410] coefficients (corresponding to 100 ms), is shown in Fig3.
+[fs = 44.1kHz]で測定され、[nF + 1 = 4410]係数（100msに相当）の長さで切り捨てられたRIRの一例を図3に示す。
+
+The frequency response of this RIR is displayed in Fig4.
+このRIRの周波数応答が図4に示されています。
+
+
+It can be seen that the magnitude response has an overall lowpass behavior as well as many local magnitude peaks and dips.
+振幅応答は、全体的な低域通過挙動ならびに多くの局所的な振幅ピークおよびディップを有することが分かる。
+
+
+This irregular behavior was explained and quantified by Schroeder [2], under the assumption that the acoustic coupling is mainly due to reflections and not due to a direct acoustic path between the loudspeaker and the microphone. 
+この不規則な挙動は、音響結合が主に反射によるものであり、スピーカとマイクロフォンとの間の直接的な音響経路によるものではないという仮定の下で、Schroederによって説明され、定量化された。
+
+The average frequency distance between two magnitude peaks is then about 10 Hz, and the peak magnitude can be up to 10 dB larger than the average magnitude in the frequency response [2].
+2つのマグニチュードピーク間の平均周波数距離は約10Hzであり、ピークマグニチュードは周波数レスポンスの平均マグニチュードより10dB大きい場合があります。
+
+
+In the electroacoustic forward path, the S microphone signals are mixed and amplified to obtain L loudspeaker signals, and moreover, some additional signal processing is performed.
+電気音響往路では、L個のスピーカ信号を得るためにS個のマイクロフォン信号が混合され、増幅され、さらにいくつかの追加の信号処理が実行される。
+
+Since usually nonlinear dynamics processing (e.g., compression, limiting, etc.) is involved here, the forward path mapping Gji[.,t] between the (i,j)th microphone–loudspeaker pair should be modeled as a nonlinear, time-varying filter.
+ここでは、通常、非線形ダイナミクス処理（例えば、圧縮、制限など）が関与しているので、（i、j）番目のマイクロホンスピーカ対の間の順方向経路マッピングGji [.、t]は、 非線形で時間変化するフィルタとしてモデリングされる。
+
+
+However, to be able to perform a stability analysis of the closed-loop system, we will mostly assume that the forward path can be modeled by a linear, time-varying transfer function, ∀i,j 
+しかし、閉ループシステムの安定性解析を実行できるようにするために、往路は線形の時間変化する伝達関数∀i,jによってモデル化することができ、
+式(8)
+と
+式(9)
+
+If the forward path includes IIR components, such as IIR equalization filters, we have that nG = ∞.
+順方向パスがIIR等化フィルタのようなIIR成分を含む場合、nG =∞である。
+
+We further assume that the sound sources have sufficient directivity and are close enough to the respective microphones, such that the acoustic transfer function matrix from the sources to the microphones is an identity matrix. These assumptions can be justified since these do not relate directly to the feedback problem.
+さらに、音源は十分な指向性を有し、音源からマイクロフォンへの音響伝達関数行列が恒等行列であるように、それぞれのマイクロフォンに十分近いと仮定する。 これらの仮定は、フィードバック問題に直接関係しないため、正当化することができます。
+
+
+While many sound reinforcement systems comprise multiple loudspeakers and microphones, most acoustic feedback control methods have been proposed in a single-channel context (i.e., for one loudspeaker and one microphone), without a framework for an extension to multichannel systems being explicitly provided. 
+多くの音響強化システムは複数のスピーカおよびマイクロホンを含むが、明示的に提供されるマルチチャネルシステムへの拡張の枠組みを持たずに、単一のチャネルの状況（すなわち、1つのスピーカおよび1つのマイクロホン）において、ほとんどの音響フィードバック制御方法が提案されている。
+
+
+For this reason, we will analyze the acoustic feedback problem and explain the acoustic feedback control methods in a single-channel context, and drop the subscripts i and j.
+このため、音響フィードバックの問題を分析し、音響フィードバック制御の方法を単一チャンネルで説明し、添え字iとjを落とす。
+
+We will however comment on the implications of extending a particular method to amultichannel system whenever appropriate.
+しかし、適切な場合には、特定の方法をマルチチャンネルシステムに拡張することの意味についてコメントします。
+
+
+In a single-channel sound reinforcement system, the closed-loop frequency response from the source signal to the loudspeaker signal can be expressed as follows:
+単一チャネル音響強化システムでは、ソース信号からスピーカ信号までの閉ループ周波数応答は、次のように表すことができます。
+式(10)
+
+
+Here, ω ∉ [0,2π] represents the radial frequency variable, U(ω,t) and V(ω,t) denote the short-term frequency spectra of the loudspeaker and source signal, and G(ω,t)and F(ω,t) are the short-term frequency responses of the forward and feedback path, which can be calculated using the short-time discrete Fourier transform (DFT). 
+ここで、ω∉[0,2π]はラディアル周波数変数を表し、U（ω、t）およびV（ω、t）はスピーカおよびソース信号の短期周波数スペクトルを表し、G（ω、t）および F（ω、t）は、短時間離散フーリエ変換（DFT）を使用して計算することができる順方向およびフィードバック経路の短期周波数応答である。
+
+
+The frequency function G(ω,t)F(ω,t) appearing in the denominator of (10) is often referred to as the "loop response" of the system, and plays a crucial role in acoustic feedback control [the corresponding magnitude response |G(ω,t)F(ω,t)| is then referred to as the "loop gain" and the phase response ∠G(ω,t)F(ω,t) as the "loop phase"].
+（10）の分母に現れる周波数関数G（ω、t）F（ω、t）は、しばしばシステムの「ループ応答」と呼ばれ、音響フィードバック制御において重要な役割を果たす[対応する大きさ 応答| G（ω、t）F（ω、t）| 「ループ利得」と呼び、位相応答∠G（ω、t）F（ω、t）を「ループ位相」と呼ぶ。
+
+It is well known that a closed-loop system can exhibit instability, which may lead to oscillations that, in an acoustic system, are perceived as howling.
+閉ループシステムが不安定性を示し、音響システムにおいてハウリングとして知覚される振動につながることがよく知られている。
+
+
+Stability analysis of linear closed-loop systems is by now a well-understood topic in control systems theory, which originated from early studies on feedback amplifiers. 
+線形閉ループシステムの安定性解析は、制御システム理論でよく理解されているトピックであり、これはフィードバックアンプの初期の研究に由来しています。
+
+The current approach to closed-loop system stability analysis is based on a classical paper by Nyquist.
+閉ループシステム安定性解析への現在のアプローチは、ナイキストによる古典的な論文に基づいています。
+
+The Nyquist stability criterion can be formulated as follows : 
+ナイキスト安定性基準は、以下のように定式化することができる。
+
+if there exists a radial frequency ω=2π(f/fs) for which
+角周波数ω=2π(f/fs)が存在する場合、
+式(11)
+式(12)
+
+then the closed-loop system is unstable. If the unstable system is moreover excited at the critical frequency f ,
+閉ループシステムは不安定である。 さらに、不安定な系が臨界周波数fで励起されると、
+
+i.e., if the source signal contains a nonzero frequency component at f , then an oscillation at this frequency will occur.
+すなわち、ソース信号がfにおける非ゼロ周波数成分を含む場合、この周波数での発振が生じる。
+
+The criterion in (11) and (12) is essential in the remainder of this paper, since any acoustic feedback control method effectively attempts at preventing either one or both of these conditions from being met. 
+いずれの音響フィードバック制御方法も、これらの条件の一方または両方が満たされないように効果的に試みるため、（11）および（12）の基準は本書の残りの部分では不可欠です。
+
+
+With the aim of quantifying the achievable amplification in a sound reinforcement system with and without acoustic feedback control, it is customary to define a broadband gain factor K(t) as the average magnitude of the forward path frequency response G(ω,t) and extract it from the forward path transfer function G(q,t), i.e.,
+音響フィードバック制御の有無にかかわらず、音響強化システムにおける達成可能な増幅を定量化する目的で、往路周波数応答G（ω、t）の平均振幅として広帯域利得係数K（t）を定義することが通例であり、 順方向パス伝達関数G（q、t）からそれを抽出する、すなわち、
+式(13)
+式(14)
+
+
+Assuming now that J(q,t) is given, and that K(t) can be varied, the maximum stable gain (MSG) can be defined as follows:
+ここで、J（q、t）が与えられ、K（t）が変化すると仮定すると、最大安定利得（MSG）は以下のように定義することができる。
+式(15)
+式(16)
+
+where P denotes the set of frequencies at which the phase condition (12) is fulfilled, i.e.,
+ここで、Pは、位相条件（12）が満たされる周波数の組、すなわち、
+式(17)
+
+
+From a statistical analysis of room acoustics, assuming a flat forward path magnitude response and a unity average feedback path magnitude response, Schroeder concluded that in a sound reinforcement system without feedback control and having a reverberation time of T60 s and a bandwidth of B Hz, the expected MSG can be calculated as
+Schroederは、室内音響の統計解析から、平坦な順方向パス振幅応答と1つの平均フィードバックパス振幅応答を仮定して、フィードバック制御なしの残響時間がT60秒、帯域幅がB Hzの健全な補強システムでは、 期待されるMSGは、
+式(18)
+
+The gain margin is defined as the difference between the MSG and the actual gain of the system. From a sound quality point of view, a gain margin of 2–3 dB is recommended to avoid audible ringing effects [2], [5].
+ゲインマージンは、MSGとシステムの実際のゲインとの差として定義されます。 音質の観点から、可聴リンギングエフェクトを回避するには、2〜3 dBのゲインマージンを推奨します[2]、[5]。
+

@@ -1,0 +1,163 @@
+B. Gain Reducton Methods
+ゲイン低減法
+
+The most straightforward approach to acoustic feedback control is to automate the actions that a human operator would undertake for preventing or eliminating howling in a sound reinforcement system.
+音響フィードバック制御に対する最も直接的なアプローチは、音響設備におけるハウリングを防止または排除するために人間のオペレータが行う行為を自動化することである。
+
+These actions usually consist in reducing the electroacoustic forward path gain, such that the system moves away from magnitude condition (11) in the Nyquist criterion.
+これらの動作は、通常、システムがナイキスト基準の大きさ条件（11）から離れるように、電気音響的フォワード経路利得を低減することからなる。
+
+Depending on the width of the frequency band in which the gain is actually reduced, we can discriminate between three gain reduction methods:
+利得が実際に低減される周波数帯域の幅に応じて、3つの利得低減方法を区別することができる。
+
+
+1) in automatic gain control (AGC) methods [20]– [22], the gain is reduced equally in the entire frequency range by decreasing the broadband gain factor K(t) defined in (14);
+自動利得制御（AGC）法[20]〜[22]では、（14）で定義した広帯域利得係数K（t）を減少させることにより、全周波数範囲で等しく利得を減少させる。
+
+
+2) in automatic equalization (AEQ) [22]–[30], the gain reduction is applied in critical subbands of the entire frequency range, namely those subbands in which the loop gain is close to unity;
+自動等化（AEQ）[22]〜[30]において、利得低減は、全周波数範囲の臨界サブバンド、すなわちループゲインが1に近いサブバンドにおいて適用される。
+
+3) in NHS [31]–[58], the gain is reduced in narrow frequency bands around critical frequencies, i.e., frequencies at which the loop gain is close to unity.
+NHS [31]〜[58]では、臨界周波数、すなわちループ利得が1に近い周波数の周りの狭い周波数帯域で利得が減少する。
+
+
+Every gain reduction method has to be activated in some way, when a closed-loop instability or a tendency towards instability is detected.
+閉ループの不安定性または不安定性に向かう傾向が検出されたときには、あらゆるゲイン低減方法を何らかの方法で起動する必要があります。
+
+ Only a few gain reduction van Waterschoot and Moonen: Fifty Years of Acoustic Feedback Control: State of the Art and Future Challenges Vol.99, No. 2, February 2011 | Proceedings of the IEEE 293 methods have been proposed which are based on a proactive instability detection: these are either based on an online measurement of the feedback path magnitude response [52], [59] or on an early detection of the spectral accumulation effect that can be observed at critical frequency components in the microphone signal [28]– [30], [60], [61].
+Waterschoot and Moonen：音響フィードバック制御の50年：最先端技術と未来の課題Vol.99、No.2、February 2011 |
+先験的な不安定性の検出に基づくIEEE 293の方法の議論が提案されている。これらは、フィードバック経路の振幅応答[52]、[59]のオンライン測定に基づくか、またはスペクトル蓄積効果の早期検出に基づいている マイクロホン信号[28]〜[30]、[60]、[61]の臨界周波数成分で観測することができる。
+
+ Most gain reduction methods are reactive, in the sense that howling can usually be perceived before it is actually detected.
+ほとんどのゲイン・リダクション方法は、ハウリングが実際に検出される前に知覚されるという意味で、反応性があります。
+
+ In these methods, howling detection is typically based on a combined spectral and temporal analysis of the microphone signal.
+これらの方法では、ハウリング検出は、典型的には、マイクロホン信号のスペクトルと時間の複合分析に基づく。
+
+ Due to the sinusoidal nature of howling, the microphone signal frequency components having the largest magnitude are considered to be candidate howling components.
+ハウリングの正弦波特性のために、最大の大きさを有するマイクロホン信号周波数成分は、ハウリング成分の候補であると考えられる。
+
+ The true howling components within this set of candidates can then be discriminated from the source signal tonal components (originating from voiced speech or musical tones) using several criteria.
+この候補セット内の真のハウリング成分は、いくつかの基準を使用して、ソース信号音成分（有声音または音調に由来する）から区別することができる。
+
+ Spectral criteria for discriminating between howling and tonal components are based on one or more of the following features: the power ratio of the candidate howling component and the entire spectrum [25]–[27], [35]–[38], [45], [49]–[51], [55], [56], the power ratio of the candidate howling component and its (sub)harmonics [32], [34]–[36], [43], and the power ratio of the candidate howling component and its neighboring frequency components [22], [28]–[30].
+ハウリング成分と音成分の識別のためのスペクトル基準は、以下の特徴の1つまたは複数に基づいている：候補のハウリング成分とスペクトル全体のパワー比[25]〜[27]、[35]〜[38]、[45 ]、[49] - [51]、[55]、[56]、ハウリング成分の候補とそのハーモニクスのパワー比[32]、[34] - [36]、[43] ハウリング成分候補とその近傍周波数成分の電力比[22]、[28]〜[30]。
+
+ On the other hand, temporal criteria for howling detection rely on the observation that howling components typically persist for a longer time than tonal components [20], [21], [31], [32], [34], [38], [43]–[45], [49] and exhibit an exponentially increasing magnitude until the sound reinforcement system saturates [28]–[30].
+一方、ハウリング検出の時間的基準は、ハウリング成分が音色成分よりも長い時間持続するという観測に依存している[20]、[21]、[31]、[32]、[34]、[38]、 [43] - [45]、[49]、音補強システムが飽和するまで指数関数的に増加する[28]〜[30]。
+
+ A comparative evaluation of these spectral and temporal howling detection criteria is reported in [62] and [63].
+これらのスペクトルおよび時間的ハウリング検出基準の比較評価は、[62]および[63]に報告されている。
+
+
+The AGC method is the earliest gain reduction method, which was proposed by Patronis in 1978 [20], [21].
+AGC法は、1978年にPatronisによって提案された、最も早い利得低減法である[20]、[21]。
+
+ If howling is detected, the broadband gain is immediately reduced, and after a specified time interval the gain is restored to the initial value.
+ハウリングが検出されると、広帯域利得が直ちに減少し、指定された時間間隔の後に利得が初期値に戻される。
+
+ Candidate howling frequencies are discriminated from tonal source signal components by assuming that howling components persist for several seconds.
+ハウリング成分が数秒間続くと仮定することによって、ハウリング周波数の候補は、音源信号成分から弁別される。
+
+ A subband implementation of this method was proposed by Ando [22], featuring a spectral approach to howling detection by evaluating power ratios between adjacent subbands.
+この方法のサブバンド実装はAndo [22]によって提案され、隣接するサブバンド間の電力比を評価することによってハウリング検出へのスペクトルアプローチを特徴としています。
+
+ Obviously, AGC methods do not increase the MSG since the spectral shape of the loop gain is not altered.
+明らかに、ループ利得のスペクトル形状が変更されないので、AGC法はMSGを増加させない。
+
+ The main strength of AGC methods is their reliability: if the gain is sufficiently reduced, an unstable system is guaranteed to be stabilized.
+AGC方式の主な強みは、その信頼性です。ゲインを十分に小さくすると、不安定なシステムが安定することが保証されます。
+
+ Therefore, many other acoustic feedback control methods include an AGC method as a "rescue procedure" that is activated if all else fails; see, e.g., [22], [35], [36], [55], [56], and [64].
+したがって、他の多くの音響フィードバック制御方法には、それ以外のすべてが失敗した場合にアクティブ化される「レスキュー手順」としてのAGC方法と、 例えば、[22]、[35]、[36]、[55]、[56]および[64]を参照されたい。
+
+
+The AEQ method follows directly from the subband approach to AGC, as proposed by Ando [22].
+AEQ法は、Ando [22]が提案したように、サブバンド法からAGC法に直接移行している。
+
+
+ If howling detection is performed in frequency subbands, then the gain reduction can be limited to those subbands in which howling is detected.
+ハウリング検出が周波数サブバンドで実行される場合、ハウリングが検出されるサブバンドに限定され得る。
+
+
+ Hanajima et al. [25], [26] further improved the subband howling detection, by first performing a howling detection in relatively wide subbands, and subsequently dividing the most critical subband in narrower subbands in which the howling detection is then repeated.
+Hanajimaらは、比較的広いサブバンドで最初にハウリング検出を実行し、続いてハウリング検出が繰り返される狭いサブバンドで最も重要なサブバンドを分割することにより、サブバンドハウリング検出をさらに改善した[25]、[26]。
+
+ They use ten logarithmically spaced wide subbands in the 10–10 000-Hz range, which are then divided into ten linearly spaced narrower subbands to obtain a more accurate howling detection.
+それらは、10-10000Hz範囲内の10個の対数的に離間した広いサブバンドを使用し、より正確なハウリング検出を得るために10個の線形に間隔を置いた狭いサブバンドに分割される。
+
+ An even more advanced howling detection can be found in the AEQ method of Osmanovic et al. [28]–[30].
+OsmanovicらのAEQ法[28]〜[30]には、より高度なハウリング検出法がある。
+
+ The detection criterion consists of a linear combination of two features that are calculated for all candidate howling components: the "slopeness" is a temporal feature that models the exponential buildup of a howling component, while the "peakness" is a spectral feature that estimates the power ratio of a candidate howling component and its neighboring frequency components.
+検出基準は、すべての候補ハウリングコンポーネントに対して計算される2つのフィーチャの線形結合からなる。「スロープネス」は、ハウリングコンポーネントの指数関数的な蓄積をモデル化する時間フィーチャであり、「ピーク」は、 候補となるハウリング成分とそれに隣接する周波数成分の電力比を計算する。
+
+ For the equalization, Osmanovic et al. use 14 logarithmically spaced eighth-order IIR bandstop filters in the speech range 300–6000 Hz [28]–[30].
+イコライゼーション(均等化？)のために、Osmanovicらは、会話音声の周波数範囲300-6000Hz [14]〜[30]の14個の対数的に離間した8次IIRバンドストップフィルタを使用する。
+
+
+The NHS methods can be divided into two categories, i.e., one-stage and two-stage NHS methods, depending on whether the howling detection and notch filtering are performed jointly or separately.
+NHS方法は、ハウリング検出とノッチフィルタリングが一緒にまたは別々に実行されるかどうかに応じて、1段階および2段階のNHS方法の2つのカテゴリに分けることができる。
+
+ The earliest NHS methods are one-stage methods, which are usually implemented using adaptive notch filters (ANFs).
+最も初期のNHS法は、通常、適応ノッチフィルタ（ANF）を使用して実装される1段階法です。
+
+ In 1989, Foley proposed the adaptive periodic noise canceller [31] for speech applications, which is an FIR-ANF that is able to track and cancel a narrowband component in the microphone signal.
+1989年、Foleyは会話音声アプリケーション用の適応型周期ノイズキャンセラ[31]を提案しました。これは、マイクロホン信号の狭帯域成分を追跡してキャンセルできるFIR-ANFです。
+
+Since the FIR-ANF in [31] is adapted using the least mean squares (LMS) algorithm, it is expected to be too slow to cancel tonal speech components, which vary more quickly in time than howling components.
+[31]のFIR-ANFは、最小二乗平均（LMS）アルゴリズムを使用して適応されるので、ハウリング成分よりも時間的により迅速に変化する音韻成分をキャンセルするには遅すぎると予想される。
+
+ Also, the FIR-ANF is preceded by a delay of eight samples such that it cannot cancel the shortterm- correlated speech formants.
+また、FIR-ANFの前には、8つのサンプルの遅延があり、短期相関音声ホルマントをキャンセルすることはできません。
+
+ Foley’s FIR-ANF was shown to be H∞-robust for a first-order feedback path (i.e., nF = 1), provided that the LMS stepsize is properly chosen [41], [47].
+FoleyのFIR-ANFは、LMSステップサイズが適切に選択されれば、一次フィードバック経路（すなわち、nF = 1）に対してH∞ロバストであることが示された[47]。
+
+ Staudacher [40] proposed an extension to Foley’s FIR-ANF, by using a variable LMS stepsize that increases as the FIR-ANF input signal power increases, such that the convergence is accelerated when howling occurs.
+Staudacher [40]は、FIR-ANF入力信号パワーが増加するにつれて増加する可変LMSステップサイズを使用することによってFoleyのFIR-ANFへの拡張を提案し、ハウリングが発生したときに収束が加速されるようにした。
+
+To reduce the impact of the ANF on sound quality, the notch filter bandwidth should be as small as possible.
+音質に対するANFの影響を低減するために、ノッチフィルタの帯域幅はできるだけ小さくする必要があります。
+
+
+ A disadvantage of the FIR-ANF implementation is that a large filter order is required to obtain a narrowband notch characteristic, e.g., Foley [31] and Staudacher [40] use 32nd-order filters to cancel a single narrowband component.
+FIR-ANF実装の欠点は、狭帯域ノッチ特性を得るために大きなフィルタ次数が必要であることである。たとえば、Foley [31]およびStaudacher [40]は、単一狭帯域成分をキャンセルするために32次フィルタを使用する。
+
+ If multiple howling components are to be canceled, the required FIR-ANF filter order may become unpractically large.
+複数のハウリング成分をキャンセルする場合、必要なFIR-ANFフィルタ次数は実用的に大きくなる可能性があります。
+
+Following this observation, several IIR-ANF implementations have been proposed, which only require a biquadratic (i.e., secondorder) filter structure to cancel one narrowband component.
+この観察に続いて、いくつかのIIR-ANF実施形態が提案されており、1つの狭帯域成分をキャンセルするために四次（すなわち二次）フィルタ構造のみを必要とする。
+
+ The main difficulty with IIR-ANF implementations is that the least squares (LS) cost function associated with the howling component frequency estimation is typically nonconvex.
+IIR-AND実装の主な難点は、ハウリング成分周波数推定に関連する最小二乗（LS）コスト関数が典型的には非凸であることである。
+
+
+Kuo and Chen [33] proposed a constrained biquadratic IIR-ANF in which the global minimum of the LS cost function can be found with high probability by increasing the notch bandwidth during the howling detection process.
+Kuo and Chen [33]は、ハウリング検出プロセス中にノッチ帯域幅を増加させることによって、LSコスト関数の大域的最小値が高い確率で見出される、拘束された四次方程式IIR-ANFを提案した。
+
+Once howling has been detected, the notch filter is activated in the electroacoustic forward path with a reduced bandwidth, to avoid a loss of sound quality.
+ハウリングが検出されると、ノッチフィルタは、音質の損失を避けるために、低減された帯域幅を有する電気音響フォワード経路において作動される。
+
+Another approach to bypass local minima in the LS cost function associated with the IIR-ANF implementation is to only adapt the FIR part of the filter, and subsequently copy the numerator coefficients to the denominator [43], perhaps after including some scaling factor [39], [54].
+IIR-ANF実装に関連するLSコスト関数の極小値をバイパスするもう1つのアプローチは、おそらくフィルタのFIR部分を適応させ、その後、分子係数を分母にコピーすることである[43] ]、[54]。
+
+A biquadratic IIR-ANF implementation featuring an advanced howling detection method was proposed by Porayath and Mapes-Riordan [43]: a howling frequency is detected when it has a power that is 30 dB larger than its first harmonic and when this power difference persists for at least 50–100 ms.
+進化したハウリング検出法を特徴とする2次元IIR-ANFの実装は、Porayath and Mapes-Riordan [43]によって提案された：ハウリング周波数は、そのパワーが第1高調波よりも30dB大きく、このパワー差が持続するときに検出される 少なくとも50-100ms。
+
+Since the power spectral density is however hard to estimate when using the ANF approach, a different howling detection method was recently proposed by Gil-Cacho et al [58], which is based on running multiple regularized biquadratic IIR-ANFs in parallel with different regularization factors.
+しかし、ANF法を用いた場合、パワースペクトル密度は推定が困難であるため、Gil-Cachoら[58]は、異なる正則化因子と並行して複数の正則化された2次元IIR-ANFを実行することに基づいて、 。
+
+Yet another second-order ANF implementation was proposed by Wei et al[48], in which the input samples to the ANF consist of phase-shifted instead of time-shifted microphone signal samples.
+また、Weiら[48]は、ANFへの入力サンプルが時間シフトされたマイク信号サンプルの代わりに位相シフトされた2次ANF実装を提案した[48]。
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,12 @@
+As already mentioned, we will only deal with automatic methods for acoustic feedback control.
+既に述べたように、我々は音響フィードバック制御のための自動方法のみを取り扱う。
+
+A review of manual feedback control methods is given in [6].
+マニュアルフィードバック制御法のレビューは、[6]に示されている。
+
+These methods are based on a proper microphone and loudspeaker selection and positioning, suppression of discrete room modes using notch filters, and equalization of the entire room response using 1/3 octave graphic equalizer filters, and may result in an MSG increase of 5–8 dB [6].
+これらの方法は、適切なマイクロフォンとスピーカーの選択と位置付け、ノッチフィルターを使用した個別ルームモードの抑制、1/3オクターブのグラフィックイコライザーフィルターを使用した部屋全体の応答のイコライゼーションに基づいており、MSGが5-8 dB [6]。
+
+Automatic feedback control methods may be categorized into four classes: PM methods, gain reduction methods, spatial filtering methods, and room modeling methods.
+自動フィードバック制御方法は、PM法、ゲイン低減法、空間フィルタリング法、および部屋モデリング法の4つのクラスに分類することができる。
+

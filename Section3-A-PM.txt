@@ -1,0 +1,73 @@
+A Phase-Modulation Methods
+位相変調法
+
+One of the earliest approaches to acoustic feedback control consists in frequency shifting (FS) the microphone signals before these are amplified and sent to the loudspeakers.
+音響フィードバック制御に対する最も初期のアプローチの1つは、これらが増幅されてスピーカに送られる前に、マイクロホン信号を周波数シフト（FS）することである。
+
+The FS approach can largely be attributed to Schroeder, who published a number of papers on this topic in the early 1960s [2], [7]–[9].
+FSのアプローチは、主に1960年代初めにこのトピックに関する多くの論文を発表したSchroeder [2]、[7] - [9]に起因すると考えられます。
+
+By applying FS, the loop gain can be smoothed, such that ideally, the MSG is determined by the average magnitude response rather than the peak magnitude response [9].
+FSを適用することにより、ループ利得を平滑化することができ、理想的には、MSGはピーク振幅応答ではなく平均振幅応答によって決定される[9]。
+
+Since the average frequency distance between two magnitude peaks in a room response was found to be around 10Hz, the optimal FS value is expected to be around 5Hz [2].
+室内応答における2つのマグニチュードピーク間の平均周波数距離は約10Hzであることが判明したので、最適なFS値は約5Hzであると予想される[2]。
+
+An MSG increase up to 14 dB was reported [7], however, the subjectively acceptable MSG increase is limited to 6 dB if audible beating effects due to the FS operation are to be avoided [2], [9].
+しかし、MSGの最大14dBの増加が報告されている[7]が、FS動作による可聴鼓動の影響を避けるべきであれば、主観的に許容可能なMSG増加は6dBに制限される[2]、[9]。
+
+It is claimed in [9] that a frequency shift of 5 Hz is inaudible both for speech and music signals.
+[9]において、5Hzの周波数シフトは、音声信号と音楽信号の両方で聞き取れないことが主張されている。
+
+The earliest FS implementations were based on analog single-sideband modulation [10] or phase modulation [11].
+最も初期のFS実装は、アナログシングルサイドバンド変調[10]または位相変調[11]に基づいていました。
+
+More recently, a digital FS implementation using a truncated FIR Hilbert filter has been proposed [12].
+最近では、切り捨てられたFIRヒルベルトフィルタを使用するデジタルFS実装が提案されている[12]。
+
+A drawback of the FS approach is that it does not preserve the harmonic relations between tonal components in voiced speech and music signals.
+FSアプローチの欠点は、有声音の音声信号と音楽信号の音調成分の調波関係が保持されないことです。
+
+
+ It was shown in [13] that a bandwidth compression does preserve harmonic relations and results in a feedback stability improvement similar to the FS approach.
+帯域幅圧縮は高調波関係を保存し、FS手法と同様のフィードバック安定性向上をもたらすことが[13]に示されています。
+
+Another early feedback control method employs phase modulation (PM) in the electroacoustic forward path, with the aim of bypassing the phase condition (12) in the Nyquist criterion.
+別の早期フィードバック制御方法は、ナイキスト基準で位相条件（12）をバイパスする目的で、電気音響フォワード経路に位相変調（PM）を使用する。
+
+ In 1958, Mishin [14], [170] described a sinusoidal PM approach in which the choice of the modulation parameter relates to the zeros of Bessel functions of the first kind.
+ 1958年に、Mishin [14]、[170]は、変調パラメータの選択が第1種のベッセル関数のゼロに関係する正弦波PMアプローチを述べた。
+ 
+ In a 1968 paper by Nishinomiya [15], an MSG increase up to 7 dB is reported using sinusoidal frequency modulation (FM), which is conceptually equivalent to sinusoidal PM.
+ Nishinomiya [19]の1968年の論文では、正弦波PMと概念的に同等な正弦波周波数変調（FM）を使用して最大7 dBのMSG増加が報告されています。
+ 
+ Guelke and Broadhurst [5] applied the sinusoidal PM technique in the context of reverberation enhancement (RE) systems, using a very low modulation frequency (~1 Hz), and resulting in a 4-dB MSG increase.
+GuelkeとBroadhurst [5]は、非常に低い変調周波数（〜1 Hz）を使用して残響増強（RE）システムとの関係で正弦波PM技術を適用し、4 dBのMSG増加をもたらした。
+
+
+The apparent suitability of PM, FM, and other periodic modulations for feedback control in digital RE systems resulted in a renewed interest in these methods in the 1990s.
+デジタルREシステムにおけるフィードバック制御のためのPM、FM、および他の周期的変調の明らかな適合性は、1990年代にこれらの方法に新たな関心をもたらした。
+
+ Svensson [16] and Nielsen and Svensson [17] provided a unifying approach to PFC in which the modulators, including sinusoidal PM, FM, amplitude modulation (AM), and delay modulation (DM), are viewed as linear periodically time-varying filters.
+正弦波PM、FM、振幅変調（AM）、遅延変調（DM）を含む変調器を線形周期的時間変動フィルタと見なすPFCへの統一アプローチをSvensson [16]およびNielsen and Svensson [17] が提供。
+
+ Moreover, they showed that the FS approach also fits into this framework, hence labeling FS-based feedback control as a special case of PFC.
+さらに、彼らは、FSアプローチがこのフレームワークにも適合し、FSベースのフィードバック制御をPFCの特別なケースとしてラベル付けすることを示した。
+
+ Svensson [16] reported an average 4-dB MSG increase with a synthetic acoustic feedback path, while Nielsen and Svensson [17] obtained MSG increases up to 8 dB in real room acoustic feedback scenarios.
+Svensson [16]は、合成音響フィードバックパスを使用して平均4 dB MSG増加を報告し、Nielsen and Svensson [17]は実際の室内音響フィードバックシナリオでMSGを最大8 dB増加させた。
+
+ Poletti [18] was the first to study the performance of PFC (in particular using an FS approach) in multichannel sound systems.
+Poletti [18]は、マルチチャネルサウンドシステムでPFCのパフォーマンスを（特にFSアプローチを使用して）最初に研究しました。
+
+ His somewhat discouraging conclusion was that the stability improvement due to FS reduces as the number of channels increases.
+彼の幾分落胆した結論は、チャネル数が増えるにつれてFSによる安定性の改善が減少することであった。
+
+ Finally, while the impact of the PFC approach on sound quality may be considerable, to our knowledge only a single study has been devoted to its perceptual evaluation.
+最後に、音質に対するPFCアプローチの影響は相当なものですが、われわれの知る限りでは、単一の研究だけがその知覚評価に充てられています。
+
+ The results of a perceptual study by Svensson [19] indicate that the PFC approach (and in particular the FS approach) may be well suited for transient signals like speech but is less appropriate for sustained tones often occurring in audio signals.
+Svensson [19]による知覚研究の結果は、PFC手法（特にFS手法）が音声のような過渡信号には適しているが、音声信号でしばしば発生する持続的な音に対してはあまり適切でないことを示している。
+
+In Section IV, a more extensive treatment of the PFC　approach is provided.
+セクションIVでは、PFCアプローチのより広範な処理が提供される。

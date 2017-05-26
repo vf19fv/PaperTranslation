@@ -1,0 +1,33 @@
+The goal of this paper is threefold. First, we aim to provide an overview of the state of the art in acoustic feedback control, by reviewing relevant scientific papers and patents that have been published over the past five decades. The focus of the literature review is on acoustic feedback control for room acoustic sound reinforcement systems, a PA system being themost exemplary application.
+この論文の目標は3つです。 まず、過去50年間に公開された科学論文と特許を審査することにより、音響フィードバック制御における最先端技術の概要を提供することを目指します。 文献レビューの焦点は、室内音響強化システムのための音響フィードバック制御であり、PAシステムは、最も典型的な応用例である。
+
+
+We should point out, however, that during the past two decades a considerable amount of research results has been published related to feedback control in hearing aids　(HAs), where the feedback is due to a combined acoustic　and mechanical coupling. Some of these publications will　also be referenced here as they have provided solutions that　have successfully been extrapolated to room acoustic　applications.
+しかし、過去20年間に、フィードバックが補聴器（HA）のフィードバック制御に関連してかなりの量の研究結果が公表されていることが指摘されるべきである。 これらの刊行物の一部は、室内音響アプリケーションに成功裡に外挿されたソリューションを提供しているため、ここでも参照されます。
+
+
+Our second goal is to report results of a　comparative evaluation of the three most widely used methods for acoustic feedback control, namely phasemodulating feedback control (PFC), notch-filter-based howling suppression (NHS), and adaptive feedback cancellation (AFC). To our knowledge, such a comparative evaluation has not been reported earlier. This is presumably due to the fact that these three methods in fact attempt to solve different problems (i.e., smoothing the system loop gain versus howling suppression versus removal of the acoustic loudspeaker–microphone coupling) and hence different measures have been used previously to quantify the performance of each of these methods individually.
+私たちの第2の目標は、音響フィードバック制御のための3つの最も広く使用されている方法、すなわち位相変調フィードバック制御（PFC）、ノッチフィルタベースのハウリング抑制（NHS）、適応フィードバック除去（AFC）の比較結果を報告することです。 私たちの知る限りでは、そのような比較評価は以前には報告されていない。 これはおそらく、これらの3つの方法が実際に異なる問題を解決しようとしているという事実によると思われる（すなわち、ハウリング対ハウリング抑制対音響スピーカ - マイクロフォン結合の除去）。 これらの方法のそれぞれの性能を個別に評価する。
+
+
+We observe, however, that even though the PFC, NHS, and AFC problem formulations are different, the ultimate objectives of these methods are the same: to improve sound quality, to increase the amount of achievable amplification, and to operate in a reliable way.
+しかし、PFC、NHS、AFCの問題の処方が異なっていても、これらの方法の究極の目的は同じである：音質を改善し、達成可能な増幅の量を増やし、信頼できる方法で動作させること 。
+
+
+Hence the reported comparative evaluation is carried out with these three objectives in mind. Finally, out third goal is to formulate the challenges that we believe are most prevalent to steer future research in acoustic feedback control towards the development of reliable and affordable solutions.
+したがって、報告された比較評価は、これらの3つの目的を念頭に置いて実施される。 最後に、第3の目標は、信頼性と手頃な価格のソリューションの開発に向けて、今後の音響フィードバック制御の研究を支配するために最も一般的と思われる課題を策定することです。
+
+The paper is organized as follows. In Section II, the acoustic feedback problem is formulated in a formal way, where the key result is the Nyquist stability criterion, based on which all the acoustic feedback control methods can be derived. 
+論文は次のように編成されている。 セクションIIでは、音響フィードバックの問題は正式な方法で定式化され、重要な結果はナイキスト安定性基準であり、それに基づいてすべての音響フィードバック制御方法が導き出される。
+
+Section III deals with the state of the art in acoustic feedback control: the existing feedback control solutions are divided into four categories [phase-modulation (PM) methods, gain reduction methods, spatial filtering methods, and room modeling methods], and a detailed literature review of each category is given. In the next sections, the three most popular acoustic feedback control methods are outlined in more detail: 
+セクションIIIでは、音響フィードバック制御の現状を扱っています。既存のフィードバック制御ソリューションは、位相変調（PM）法、ゲイン低減法、空間フィルタリング法、部屋モデリング法の4つのカテゴリに分類され、 各カテゴリーの文献レビューが与えられている。 次のセクションでは、3つの最も一般的な音響フィードバック制御方法について、より詳細に概説する。
+
+Section IV deals with the PFC method, Section V with the NHS method, and Section VI with the AFC method. 
+
+In Section VII, these three methods are then evaluated in terms of the resulting sound quality, the achievable amplification, as well as their reliability. The evaluation is based on computer simulation results using realistic room acoustic models and for both speech and audio signals. 
+セクションVIIでは、これらの3つの方法が、結果として得られる音質、達成可能な増幅、およびそれらの信頼性に関して評価される。 評価は、現実的な室内音響モデルを使用し、音声信号と音声信号の両方についてコンピュータシミュレーション結果に基づいています。
+
+Finally, in the concluding Section VIII, we summarize the results obtained with the state-of-the-art methods and formulate future research challenges in acoustic feedback control.
+最後に、第VIII節では、最先端の方法で得られた結果を要約し、音響フィードバック制御における今後の研究課題を定式化する。
+
