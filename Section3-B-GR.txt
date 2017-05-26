@@ -154,10 +154,57 @@ Yet another second-order ANF implementation was proposed by Wei et al[48], in wh
 また、Weiら[48]は、ANFへの入力サンプルが時間シフトされたマイク信号サンプルの代わりに位相シフトされた2次ANF実装を提案した[48]。
 
 
+The two-stage NHS method, which is by now probably the most popular gain reduction method for acoustic feedback control, originates from the work of Lewis et al [32], [34] and Er et al [35], [36] in the early 1990s.
+音響フィードバック制御の最も一般的な利得低減方法である2段階NHS法は、Lewisら[32]、[34]およびErら[35]、[36]の研究に由来する 1990年代初め。
+
+ A nonparametric frequency analysis of the microphone signal is computed using a fast Fourier transform (FFT) algorithm, from which the candidate howling components are determined using a peak picking algorithm.
+マイクロフォン信号のノンパラメトリックな周波数分析は、高速フーリエ変換（FFT）アルゴリズムを使用して計算され、そこから候補となるハウリング成分がピークピッキングアルゴリズムを使用して決定される。
+
+The power of the candidate howling components is then compared to an absolute power threshold [35], [36], to the average signal power [35], [36], and to the (sub)harmonics power [32], [34]–[36] to determine if howling occurs.
+次いで、ハウリング候補のパワーは、平均信号パワー[35]、[36]、および（サブ）高調波パワー[32]、[34]に対する絶対パワーしきい値[35]、[36] ] - [36]を押して、ハウリングが発生しているかどうかを判断します。
+
+This spectral criterion is combined with a temporal criterion for howling detection by Lewis et al [32], [34].
+このスペクトル基準は、Lewisらによるハウリング検出のための時間的基準と組み合わされる[32]、[34]。
+
+Whenever howling is detected, biquadratic notch filters are inserted in the electroacoustic forward path.
+ハウリングが検出されると、四次ノッチフィルタが電気音響フォワード経路に挿入される。
+
+Several improvements to the methods by Lewis et al and Er et al have been reported.
+LewisらおよびErらの方法に対するいくつかの改善が報告されている。
+
+Kawamura et al [37], [38] propose an online modification of the thresholds used in the spectral and temporal howling detection criteria, steered by estimates of the background noise spectrum, the source signal spectrum, the reverberation time, and the acoustic feedback path response.
+Kawamuraら[37]、[38]は、背景雑音スペクトル、音源信号スペクトル、残響時間、および音響フィードバック経路応答の推定値によって調整された、スペクトルおよび時間的ハウリング検出基準で使用される閾値のオンライン修正を提案している 。
+
+Lane et al [42] apply a parametric frequency analysis instead of the nonparametric analysis proposed earlier, using a set of adjustable bandpass filters having relatively wide passbands as compared to the stopbands of the notch filters.
+Laneら[42]は、ノッチフィルタの阻止帯域と比較して比較的広い通過帯域を有する調整可能な帯域通過フィルタのセットを使用して、先に提案されたノンパラメトリック解析の代わりにパラメトリック周波数解析を適用する。
 
 
+An alternative way of determining the set of candidate howling components was proposed by Williams [44], [45]: instead of executing a peak picking algorithm on the FFT magnitude spectrum estimate, a so-called "ballistics procedure" is applied to model the temporal buildup of narrowband components such that components with an increasing power can be identified.
+ウィリアムズ[44]、[45]は、FFT振幅スペクトル推定にピークピッキングアルゴリズムを実行する代わりに、いわゆる「弾道手順」を適用して、 増加するパワーを有する成分を識別することができるように、狭帯域成分の時間的蓄積を可能にする。
 
+Rocha and Ferreira [49] and Borsch [50], [51] replace the FFT algorithm in the nonparametric frequency analysis by an odd FFT algorithm and a frequency warped FFT algorithm, respectively.
+RochaとFerreira [49]とBorsch [50]、[51]はそれぞれ、奇数FFTアルゴリズムと周波数ワーピングFFTアルゴリズムによるノンパラメトリック周波数分析のFFTアルゴリズムを置き換える。
 
+Moreover, the frequency analysis described by Bo¨rsch [50], [51] is the only nonparametric method which includes a compensation for the estimation errors due to the limited FFT resolution.
+さらに、Bosch [50]、[51]によって記述された周波数解析は、限定されたFFT分解能による推定誤差の補償を含む唯一のノンパラメトリックな方法です。
 
+In [52], Rombouts et al propose a proactive howling detection method applied to NHS, based on the estimation of critical closed-loop system frequencies from an adaptive estimate of the feedback path response.
+Romboutsらは、フィードバック経路応答の適応推定からの臨界閉ループシステム周波数の推定に基づいて、NHSに適用される予防的ハウリング検出方法を提案している[52]。
 
+ Abe [53] was the first to consider NHS in a multichannel sound reinforcement system, and succeeded in reducing the computational and memory requirements by frequencyanalyzing the individual microphone signals with a lowresolution FFT algorithm and the mixed signal with a high-resolution FFT algorithm.
+Abe [53]は、マルチチャンネル音響強化システムで初めてNHSを検討し、低解像度FFTアルゴリズムと高分解能FFTアルゴリズムを使用して個々のマイクロフォン信号を周波数分析することによって、計算とメモリの要件を削減することに成功しました。
 
+ Finally, Somasundaram [55], [56] proposes an advanced spectral howling detection criterion, in which the power of the candidate howling component is compared to a threshold that is calculated using the mean and standard deviation of the entire FFT spectrum estimate.
+最後に、Somasundaram [55]、[56]は、候補のハウリング成分のパワーを、FFTスペクトル推定全体の平均および標準偏差を用いて計算された閾値と比較する高度なスペクトルハウリング検出基準を提案する。
+
+ Furthermore, the notch filters used in [55] and [56] are gradually enabled and disabled using a socalled leaky integrator, to avoid artifacts in the loudspeaker signal.
+さらに、[55]および[56]で使用されるノッチフィルタは、スピーカ信号のアーチファクトを回避するために、ソーシャルな漏れ積分器を使用して徐々にイネーブルされ、ディセーブルされます。
+
+Since the majority of the available gain reduction methods are described in patents, not many experimental results are available and no MSG increase values have been reported.
+入手可能な利得低減方法の大部分は特許に記載されているので、多くの実験結果は入手できず、MSG上昇値も報告されていない。
+
+However, from Schroeder’s statistical analysis of a feedback path frequency response [2], it can be expected that if the loop gain could be perfectly smoothed using an AEQ or an NHS approach, a maximal MSG increase of about 10 dB may be achieved.
+しかし、Schroederのフィードバック経路周波数応答[2]の統計的分析から、AEQまたはNHSアプローチを使用してループ利得を完全に平滑化することができれば、約10dBの最大MSG増加が達成されることが期待できる。
+
+The two-stage NHS method, being the most popular of all gain reduction methods, will be described in more detail in Section V.
+すべての利得低減方法の中で最も一般的な2段階NHS法は、セクションVでより詳細に説明される。
