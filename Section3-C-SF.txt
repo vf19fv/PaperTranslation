@@ -1,0 +1,66 @@
+C. Spatial Filtering Methods
+
+ Spatial filtering methods for acoustic feedback control aim at altering the loop response G(ω,t)F(ω,t) of the closed-loop system by using microphone and/or loudspeaker arrays of which the received/transmitted signals are processed by beamforming filters. 
+音響フィードバック制御のための空間フィルタリング方法は、受信/送信された信号がビーム形成フィルタによって処理されるマイクロフォンおよび/またはスピーカアレイを使用することによって、閉ループシステムのループ応答G（ω、t）F（ω、t） 。
+
+ The general objective is then to design a microphone array beamformer that has its main lobe (i.e., its maximal spatial response) in the direction of the source while having a null (i.e., zero spatial response) in the direction of the loudspeaker, and/or a loudspeaker array with the main lobe directed towards the audience and a null in the direction of the microphone. 
+一般的な目的は、スピーカの方向にヌル（すなわちゼロ空間応答）を有する一方で、ソースの方向にメインローブ（すなわち、その最大空間応答）を有するマイクロフォンアレイビームフォーマを設計すること、および/ またはメインローブが聴衆の方に向けられ、マイクロホンの方向にヌルがあるラウドスピーカアレイである。
+
+ The first spatial filtering approach to acoustic feedback control was proposed by Duong et al in 1984 for hands-free telephony applications [65], focusing on the combined use of a microphone and loudspeaker array for a single-channel scenario with fixed microphone and loudspeaker positions.
+音響フィードバック制御に対する最初の空間フィルタリングアプローチは、1984年にDuongらによってハンズフリーテレフォニーアプリケーション用に提案された[65]、マイクロホンとスピーカの位置が固定されたシングルチャネルシナリオでのマイクロホンとラウドスピーカアレイの併用 。
+
+ The stringent spatial constraints (i.e.,the microphone and loudspeaker arrays are to have the same center and lie orthogonal to each other) make this method rather impractical for many sound reinforcement applications.
+厳格な空間的制約（すなわち、マイクロホンとスピーカアレイは同じ中心を有し、互いに直交する）は、この方法を多くの音響強化用途に対してむしろ非実用的にする。
+
+ A more flexible approach, which allows for scenarios with arbitrary microphone and loudspeaker array positions, consists in adapting the beamformer coefficients based on the available sound signals. 
+任意のマイクロホンおよびスピーカアレイ位置を有するシナリオを可能にする、より柔軟なアプローチは、利用可能な音声信号に基づいてビームフォーマ係数を適合させることにある。
+
+ Obviously, an adaptive microphone array is more straightforward to implement than an adaptive loudspeaker array, since the latter does not collect any information on the acoustic environment.
+明らかに、適応型マイクロフォンアレイは、音響式環境に関する情報を収集しないため、適応型スピーカアレイより実装するのがより簡単である。
+
+ A fundamental problem that occurs when computing the coefficients of an adaptive microphone array beamformer in a closed-loop system is the fact that the source signal is correlated with the loudspeaker signal [i.e., the loudspeaker signal can be calculated by filtering the source signal with the closed-loop response; see (10)].
+閉ループシステムにおいて適応型マイクロフォンアレイビームフォーマの係数を計算する際に生じる基本的な問題は、ソース信号がスピーカ信号と相関しているという事実である[すなわち、スピーカ信号は、ソース信号を 閉ループ応答。 （10）参照]。
+
+ Due to this correlation, a conventional adaptive beamforming algorithm will not converge to the desired solution, and consequently, part of the source signal will eventually be attenuated while part of the feedback signal will still appear in the output of the microphone array.
+この相関により、従来の適応ビームフォーミングアルゴリズムは所望の解に収束せず、その結果、ソース信号の一部が最終的に減衰され、フィードバック信号の一部がマイクロフォンアレイの出力に現れることになる。
+
+ Several solutions to this correlation problem have been proposed.
+この相関問題に対するいくつかの解決法が提案されている。
+ 
+ Janse and Belt [66] propose the combined use of an adaptive feedback canceller (AFC) and a microphone array beamformer.
+Janse and Belt [66]は、適応型フィードバックキャンセラ（AFC）とマイクロフォンアレービームフォーマの併用を提案している[66]。
+
+ By feeding the feedback-compensated signal from the AFC to the microphone array, the influence of the feedback signal on the beamforming algorithm can be decreased.
+AFCからのフィードバック補償された信号をマイクロフォンアレイに供給することによって、ビームフォーミングアルゴリズムに対するフィードバック信号の影響を低減することができる。
+
+ In this case, however, it is not possible to create a beamformer null directed towards the loudspeaker, since the feedbackcompensated signal (ideally) does not provide any information on the loudspeaker position.
+しかし、この場合、フィードバック補償された信号（理想的には）はスピーカ位置に関する情報を提供しないので、スピーカに向けられたビーム形成器ヌルを生成することは不可能である。
+
+ Another solution was proposed by Kobayashi et al [67], [68], in which the coefficients of an adaptive microphone array beamformer outside the closed signal loop are computed by canceling the source signal using a null beamformer (NBF) and inserting an artificial source signal.
+Kobayashiら[67]、[68]は、ヌルビームフォーマ（NBF）を用いて音源信号を打ち消し、人工音源信号を挿入することにより、閉ループ外の適応型マイクロフォンアレイビームフォーマの係数を計算する方法を提案した 。
+
+ The adaptive beamformer coefficients are then copied to a microphone array beamformer in the closed signal loop, resulting in an MSG increase up to 15 dB [67], [68].
+その後、適応型ビームフォーマ係数は、閉じた信号ループ内のマイクロホンアレイビームフォーマにコピーされ、MSGが15dBまで増加する[67]、[68]。
+
+ Due to the source signal cancellation, the adaptive beamformer can unambiguously identify the loudspeaker direction, however, the direction of the source with respect to (w.r.t.) the microphone array needs to be known a priori [67] or estimated by an adaptive NBF [68]. 
+ソース信号のキャンセルのために、適応ビーム形成器はスピーカの方向を明確に識別することができるが、マイクロフォンアレイに関するソースの方向は事前に知られているか、適応NBFによって推定される必要がある[68] ]。
+
+ The artificial source signal, of which the design is not specified in [67] and [68], serves to constrain the adaptive beamformer response to unity in the source direction.
+[67]と[68]に設計が規定されていない人工音源信号は、音源方向の単一性に対する適応ビーム形成器の応答を制限する働きをする。
+
+ A more recent solution to the correlation problem in adaptive microphone array beamforming was proposed by Rombouts et al. [69], [70], and consists in prewhitening the source signal component in the adaptive beamformer desired signal using an adaptive decorrelation filter that is estimated concurrently with the beamformer coefficients.
+適応マイクロフォンアレイビームフォーミングにおける相関問題に対する最近の解決策は、Romboutsら[69]、[70]によって提案されており、同時に推定される適応非相関フィルタを使用して適応ビームフォーマ希望信号のソース信号成分をホワイトホワイトニングすることからなる ビームフォーマ係数を用いて計算される。
+
+ This approach was shown to result in an MSG increase between 7 and 14 dB (depending on the reverberation time of the room), while it does not require a priori information on the source position and isconsiderably cheaper than the approach in which an AFC is also used.
+この手法は、ソース位置に関する先験的な情報を必要とせず、AFCが補充されるアプローチよりもかなり安い間に、MSGが7~14dB（部屋の残響時間に依存する）増加することが示された 。
+
+ Finally, a fundamentally different approach to spatial filtering for acoustic feedback control was proposed by Goodwin and Elko [71], [72].
+
+ In the so-called Bbeam dithering[ approach, a loudspeaker array is steered by a beamformer of which the coefficients are varied periodically with time, by time stepping through a discrete sequence of approximate Chebyshev coefficients.
+最後に、GoodwinとElko [71]、[72]は音響フィードバック制御のための空間フィルタリングに対する基本的に異なる手法を提案した。
+
+ In this way, a spatial modulation is obtained that provides a smoothing of the loop gain, comparable to the smoothing effect obtained with the PM methods for acoustic feedback control.
+このようにして、音響フィードバック制御のためのPM法で得られる平滑化効果に匹敵するループ利得の平滑化をもたらす空間変調が得られる。
+
+ An MSG increase up to 6 dB has been obtained [72], however, the spatial constraints of the beam dithering approach are rather stringent (in that the audience should always be in the main beamformer lobe, while the microphones should be in the sidelobes) and a perceptual calibration of the system is required [71].
+しかし、ビームディザリングアプローチの空間的な制約はかなり厳しい（観客は常にメインビームフォーマのローブになければならず、マイクロホンはサイドローブ内にあるべきであるという点で）6dBまでのMSGの増加が得られている[72] システムの知覚較正が必要である[71]。
