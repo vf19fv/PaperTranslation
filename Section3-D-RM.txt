@@ -1,0 +1,170 @@
+D. Room Modeling Methods
+
+In room modeling methods for acoustic feedback control, a model of the acoustic feedback path is identified either offline (during the initialization of the sound reinforcement system) or online (during the operation of the sound reinforcement system).
+音響フィードバック制御のための部屋モデリング方法では、音響フィードバック経路のモデルは、オフライン（音響設備の初期化中）またはオンライン（音響設備の動作中）のいずれかで識別される。
+
+We can distinguish between two room modeling methods, depending on how the model is subsequently applied for acoustic feedback control.
+音響フィードバック制御のためにモデルがどのように適用されるかに応じて、2つの部屋モデリング方法を区別することができます。
+
+In AFC, the acoustic feedback path model is used to predict the feedback signal component in the microphone signal (i.e., the part of the microphone signal that stems from the loudspeaker signal through the acoustic coupling).
+AFCにおいて、音響フィードバック経路モデルは、マイクロホン信号（すなわち、音響結合を介してスピーカ信号から生じるマイクロホン信号の一部）におけるフィードバック信号成分を予測するために使用される。
+
+The predicted feedback signal is then subtracted from the microphone signal, hence resulting in a feedback-compensated signal, which is in fact an estimate of the source signal component in the microphone signal.
+次いで、予測されたフィードバック信号は、マイクロフォン信号から減算され、その結果、フィードバック補償された信号が得られ、これは、実際、マイクロフォン信号におけるソース信号成分の推定値である。
+
+If an accurate model of the acoustic feedback path can be identified, then the AFC method achieves a nearly complete elimination of the acoustic coupling (i.e., the loop gain comes close to zero for all frequencies), and consequently very large MSG increases may be obtained.
+音響フィードバック経路の正確なモデルが識別できれば、AFC法は音響結合のほぼ完全な除去を達成する（すなわち、ループ利得はすべての周波数に対してゼロに近づく）、結果的に非常に大きなMSG増加が得られる
+
+Alternatively, the inverse of the acoustic feedback path can be modeled and identified, and this inverse model can then be inserted in the closed signal loop to optimally equalize the microphone signal.
+あるいは、音響フィードバック経路の逆をモデル化して識別することができ、この逆モデルを閉信号ループに挿入してマイクロホン信号を最適に等化することができる。
+
+This approach is referred to as adaptive inverse filtering (AIF), and ideally results in a perfect smoothing of the loop gain, for which the MSG increase can be expected to be around 10 dB [2].
+このアプローチは、適応逆フィルタリング（AIF）と呼ばれ、理想的にはMSGの増加が約10dBになると予想されるループ利得の完全な平滑化をもたらす[2]。
+
+
+The AIF approach has received only little attention in the context of acoustic feedback control.
+AIFのアプローチは、音響フィードバック制御の文脈においてほとんど注意を払わなかった。
+
+In 1994, Ushiyama et al. [73] proposed an inverse filtering approach in which an inverse model of the minimum-phase components in the acoustic feedback path is identified offline.
+
+ It is observed that a smoothing of the inverse model frequency response increases the robustness of the (time-invariant) inverse model w.r.t. time variations in the acoustic feedback path response.
+1994年、Ushiyamaら[73]は、音響フィードバック経路の最小位相成分の逆モデルをオフラインで同定する逆フィルタリング手法を提案した。
+
+ Another offline approach to inverse filtering was proposed by Nagata et al. [23], [24], and consists in automatically adjusting a large number of equalizers in the electroacoustic forward path, based on an offline measurement of the acoustic feedback path response using a noise probe signal.
+逆フィルタリングのための別のオフライン手法は、永田ら[23]、[24]によって提案されており、ノイズプローブ信号を用いた音響フィードバック経路応答のオフライン測定に基づいて、電気音響フォワード経路内の多数のイコライザを自動的に調整すること 。
+
+Finally, a hybrid AIF-AFC approach was proposed by Janse and Belt [66] and Schmidt and Haulick [74], in which the inverse model coefficients are adjusted based on the acoustic feedback path model that is identified in the AFC algorithm.
+最後に、AFCアルゴリズムで同定された音響フィードバック経路モデルに基づいて逆モデル係数を調整する、Janse and Belt [66]およびSchmidt and Haulick [74]によるハイブリッドAIF-AFC手法が提案された。
+
+ More results on the AIF approach can be found in the literature on acoustic dereverberation and equalization; see, e.g., [75]-[78].
+AIFアプローチに関するさらなる結果は、音響残響除去および等化に関する文献に見出すことができる。 たとえば、[75] - [78]を参照してください。
+
+
+In the AFC approach, which is conceptually similar to the well-known acoustic echo cancellation (AEC) approach, an adaptive filter is used to model, identify, and track the impulse response of the acoustic feedback path.
+AFCアプローチでは、周知の音響エコーキャンセレーション（AEC）アプローチに概念的に類似しており、音響フィードバック経路のインパルス応答をモデル化し、識別し、追跡するために適応フィルタが使用される。
+
+ Analogously to the correlation problem found in adaptive microphone array beamforming (see Section III-C), the fundamental problem encountered in AFC lies in the fact that, unlike in the AEC case, the adaptive filter’s input signal (i.e., the loudspeaker signal) and disturbance signal (i.e., the source signal) are now correlated; see (10).
+適応型マイクロホンアレービームフォーミング（セクションIII-C参照）に見られる相関問題と同様に、AFCで遭遇する基本的な問題は、AECの場合とは異なり、適応フィルタの入力信号（すなわちスピーカ信号）と 外乱信号（すなわち、ソース信号）は今や相関している。 （10）を参照してください。
+
+ Applying a standard adaptive filtering algorithm to the AFC problem hence results in a biased estimate of the acoustic feedback path impulse response [79]-[81], and consequently, the source signal component in the microphone signal ends up being partially canceled.
+したがって、AFC問題に標準的な適応フィルタリングアルゴリズムを適用すると、音響フィードバック経路のインパルス応答[79]~[81]のバイアスされた推定がもたらされ、その結果、マイクロフォン信号のソース信号成分が部分的にキャンセルされる。
+
+ For this reason, a decorrelation method is generally incorporated in the AFC scheme which is either included in the closed signal loop or in the adaptive filtering circuit [81]; see [82] for an overview and comparative evaluation.
+この理由から、非相関法は、閉ループループまたは適応フィルタリング回路[81]に含まれるAFC方式に一般的に組み込まれている。 概要と比較評価については[82]を参照のこと。
+
+
+Decorrelation in the closed signal loop can be accomplished by injecting a noise signal, by including a nonlinear or time-varying signal operation, or by inserting a processing delay in the electroacoustic forward path.
+閉じた信号ループ内の非相関は、雑音信号を注入すること、非線形または時変信号動作を含むことによって、または電気音響フォワード経路に処理遅延を挿入することによって達成することができる。
+
+ The earliest AFC reference appears to be a 1988 patent by Ibaraki et al. [83], in which a white noise signal is injected in the closed signal loop noncontinuously (e.g., during source signal pauses) to identify the low-frequency response of the acoustic feedback path.
+最も初期のAFC基準は、Ibarakiらによる1988年の特許であるように見え、白色雑音信号は、音響フィードバック経路の低周波応答を識別するために非連続的に（例えば、ソース信号休止中に）閉信号ループに注入される。
+
+ Goertz [84] proposes to inject a white noise signal continuously and reports a 5-dB MSG increase in a severely undermodeled AFC scenario (i.e., the adaptive filter length being only 1/15 of the feedback path length).
+Goertz [84]は、ホワイト雑音信号を連続的に注入することを提案し、ひどくモデル化されていないAFCシナリオ（すなわち、適応フィルタ長はフィードバック経路長のわずか1/15である）において5dBMSG増加を報告する。
+
+ Decorrelation by continuous white noise injection was also applied by Stott and Wells [64], van Waterschoot [85], and Schmidt and Haulick [74].
+Stott and Wells [64]、van Waterschoot [85]、Schmidt and Haulick [74]は、連続的なホワイトノイズ注入による無相関化を適用した。
+
+ With the aim of reducing the sound quality deterioration due to noise injection, several attempts have been made to shape the spectrum of the injected noise signal such that it becomes less perceptible.
+ノイズ注入による音質劣化を低減する目的で、注入されたノイズ信号のスペクトルを、それが知覚されにくくなるように成形するためのいくつかの試みがなされている。
+
+ Goertz [84] proposes to use A-weighted noise instead of white noise, while van Waterschoot [85] and Janse and Tchang [86] apply a time-varying noise shaping based on a psychoacoustic model.
+Goertz [84]は、ホワイトノイズの代わりにA加重ノイズを使用することを提案しているが、Wat Watchuch [85]とJanse and Tchang [86]は、心理音響モデルに基づいて時変ノイズシェーピングを適用する。
+
+ However, to obtain an AFC performance comparable to the methods using white noise injection, the psychoacoustically shaped noise has to be amplified to a level at which it is found to be even more disturbing than white noise [85].
+しかし、ホワイトノイズ注入を使用する方法に匹敵するAFC性能を得るために、心理音響的に形成されたノイズは、ホワイトノイズよりもさらに邪魔になるレベルに増幅されなければならない[85]。
+
+ Decorrelation in the closed signal loop can also be achieved by including a nonlinear or timevarying signal operation in the electroacoustic forward path.
+閉じた信号ループ内の非相関は、電気音響フォワード経路に非線形または時間変化する信号演算を含めることによっても達成することができる。
+
+ Janse et al. [87]-[89] propose to use a frequency shifter or a periodic phase or delay modulator.
+Janseら[87] - [89]は、周波数シフタまたは周期的位相または遅延変調器の使用を提案している。
+
+The AFC robustness can then be increased since these decorrelating operations also have a stabilizing effect on the closed-loop system (see Section III-A).
+これらの無相関化操作も閉ループシステム（セクションIII-A参照）に安定化効果をもたせるので、AFCのロバスト性を高めることができます。
+
+Another nonlinear decorrelation technique, which was adopted from the stereo AEC literature [90] by van Waterschoot et al[91] and Schmidt and Haulick [74], consists in adding a half-wave rectified version of the loudspeaker signal to the original loudspeaker signal, yet was found to improve the AFC performance only marginally [91].
+van Waterschootら[91]およびSchmidt and Haulick [74]によってステレオAEC文献[90]から採用された別の非線形無相関化技術は、ラウドスピーカ信号の半波整流バージョンを元のラウドスピーカ信号に加えることにある AFCの性能をわずかに向上させることが判明した[91]。
+
+Finally, in the context of HA AFC applications, inserting a processing delay in the electroacoustic forward path has been proposed for reducing the correlation between the source and loudspeaker signals [79], [92].
+最後に、HA AFCアプリケーションの文脈において、ソースとスピーカ信号との間の相関を低減するために、処理遅延を電気音響フォワード経路に挿入することが提案されている[79]、[92]。
+
+The motivation for this approach is that the source and loudspeaker signal crosscorrelation function is expected to decrease for increasing time lags, which is particularly the case for voiceless speech signals.
+この手法の動機付けは、ソース及びスピーカ信号の相互相関関数が時間遅れの増加に対して減少することが予想されることであり、これは特に無声音声信号の場合である。
+
+
+While most of the above decorrelation techniques are rather effective when applied in the closed signal loop, their effect on the sound quality may be detrimental.
+上記の無相関化技術の大半は、閉ループに適用した場合にかなり効果的であるが、音質への影響は有害である可能性がある。
+
+ For this reason, there has been an increased interest in the application of decorrelating signal operations in the adaptive filtering circuit, such that the closed-loop signals remain unaffected.
+このため、閉ループ信号が影響を受けないように、適応フィルタリング回路における非相関信号演算の適用に関心が高まっている。
+
+ A first approach, which was proposed by Ortega et al. [93], [94], consists in having the adaptive filter preceded by a processing delay.
+Ortegaら[93]、[94]によって提案された第1のアプローチは、処理遅延が先行する適応フィルタを有することにある。
+
+ The resulting decorrelation effect is similar to when a processing delay is inserted in the electroacoustic forward path.
+結果として生じる無相関化効果は、処理遅延が電気音響往路に挿入された場合と同様である。
+
+However, the delay length in the adaptive filtering circuit should not exceed the initial delay (i.e., the "dead time") in the acoustic feedback path impulse response (e.g., with the acoustic feedback path impulse response shown in Fig. 3, the maximum allowable processing delay would be 405 samples).
+しかしながら、適応フィルタリング回路における遅延長さは、音響フィードバック経路インパルス応答における初期遅延（すなわち、「デッドタイム」）を超えてはならない（例えば、図3に示す音響フィードバック経路インパルス応答では、最大 許容される処理遅延は405サンプルとなる）。
+
+A second approach consists in the use of decorrelating prefilters, that are designed to whiten the source signal component in the microphone signal.
+第2のアプローチは、マイクロホン信号内のソース信号成分を白色化するように設計された無相関プリフィルタの使用である。
+
+This approach was adopted from HA AFC research [80], [95], [96], and was applied to PA systems by van Waterschoot et al. [81], [91] and to in-car communication systems by Ortega et al. [97].
+このアプローチは、HA AFCの研究[80]、[95]、[96]から採用された。
+van Waterschootら[81]、[91]によってPAシステムに適用され、
+Ortegaら[97]による車載通信システムに適用された。
+
+ A fundamental difficulty lies in the concurrent identification of the optimal prefilter and the acoustic feedback path model from the closed-loop signals.
+基本的な困難さは、閉ループ信号からの最適なプレフィルタおよび音響フィードバック経路モデルの同時識別にある。
+
+This identification problem was tackled following a prediction-errormethod (PEM)-based approach [98, Ch. 3], [99, Ch. 7] by Rombouts et al. [100]-[105].
+この識別問題は、Romboutsら[100] - [105]による予測誤り法（PEM）に基づくアプローチ[98、Ch 3]、[99、Ch7]に続いて取り組まれた。
+
+ The PEM-based AFC approach developed in [100]-[102] is based on a nonstationary allpole source signal model, the inverse of which is then used as a time-varying FIR decorrelating prefilter in the AFC scheme.
+[100]~[102]で開発されたPEMベースのAFCアプローチは、非定常全ポールソース信号モデルに基づいており、その逆行列は、AFCスキームで時変FIR無相関プリフィルタとして使用されます。
+
+ The robustness of the PEM-based AFC approach was further improved in [103] by including some additional features such as adaptation control and the joint use of a foreground and background adaptive filter.
+PEMベースのAFC手法の頑健性は、適応制御や前景と背景の適応フィルタの共同使用などのいくつかの追加機能を含めることで[103]でさらに改善されました。
+
+ Also, efficient subband and frequency domain implementations of the PEM-based AFC method were proposed in [103].
+また、PEMベースのAFC法の効率的なサブバンドおよび周波数領域実装が[103]で提案されている。
+
+ It was shown by van Waterschoot et al. [104], [105] how the convergence of the PEM-based AFC scheme can be improved even further by incorporating prior knowledge on the source signal and the acoustic feedback path through regularization.
+van Waterschootら[104]、[105]は、PEMベースのAFCスキームの収束が、正則化を介して音源信号と音響フィードバック経路に事前の知識を組み込むことによってさらにどのように改善できるかを示した。
+
+
+In recent years, several remaining issues concerning the AFC approach have been analyzed and further improvements have been reported.
+近年、AFCの取り組みに関するいくつかの残された問題が分析され、さらなる改善が報告されている。
+
+ The overall performance of the AFC approach may be improved by combining AFC with other acoustic feedback control methods and signal enhancement techniques, leading to so-called hybrid AFC methods.
+AFCアプローチの全体的な性能は、AFCを他の音響フィードバック制御方法および信号増強技術と組み合わせることによって改善することができ、いわゆるハイブリッドAFC方法につながる。
+
+ Ortega et al. [93], [94] propose the combination of AFC with a residual feedback and noise suppression postfilter, and this hybrid AFC scheme was further expanded by Janse and Belt [66] with an adaptive microphone array beamformer and an AIF.
+OrtegaらはAFCと残留フィードバックと雑音抑圧ポストフィルタの組み合わせを提案し、このハイブリッドAFC方式は適応型マイクロフォンアレイビームフォーマとAIFを用いてJanse and Belt [66]によってさらに拡張された。
+
+ The combination of AFC with an NHS method is of particular interest due to the robustness of the NHS methods to system instability: Schmidt et al. [74], [106] and Cifani et al. [107], [108] use an ANF that operates on the AFC feedbackcompensated signal, while Rombouts et al. [52], [103] apply a two-stage NHS method in which the howling detection is based on a frequency analysis of the AFC feedback path estimate.
+AHSとNHS法との組み合わせは、システム不安定性に対するNHS法の堅牢性のために特に重要である：SchmidtらおよびCifaniらは、AFCフィードバック補償信号で作動するANFを使用し、Romboutsらは、ハウリング検出がAFCフィードバック経路推定の周波数分析に基づく2段階NHS法を適用する。
+
+ The considerable computational complexity of the AFC approach in room acoustic applications is another issue that has recently been addressed.
+室内音響応用におけるAFCアプローチの計算上の複雑さは、最近取り組まれた別の問題である。
+
+ An interesting approach towards AFC complexity reduction was proposed by Okumura and Fujita [109] and consists in applying two or more parallel adaptive filters, preceded by a processing delay in the adaptive filtering circuit, to model a single acoustic feedback path.
+奥村、藤田[109]は、AFCの複雑さの低減に向けた興味深い手法を提案し、単一の音響フィードバック経路をモデル化するために、適応フィルタリング処理遅延に先行する2つ以上の並列適応フィルタを適用することからなる。
+
+ The first filter (which can be understood to model the late reverberation in the acoustic feedback path impulse response) has many coefficients that are adapted not very frequently using a transform domain approach, while the second filter (which then models the early reflections) is a short filter that is adapted at each instant using a time domain adaptive filtering algorithm.
+第1のフィルタ（音響フィードバック経路のインパルス応答における後期残響をモデル化すると理解することができる）は、変換領域手法を使用してそれほど頻繁に適応されない多くの係数を有し、第2のフィルタ（初期反射をモデル化する） 時間領域の適応フィルタリングアルゴリズムを使用して各瞬間に適応される短いフィルタである。
+
+ A final issue is related to AFC in audio applications: none of the aforementioned AFC methods has been designed to operate in a high-fidelity audio environment.
+最終的な問題は、オーディオアプリケーションのAFCに関連しています。前述のAFCメソッドのどれも、高品質のオーディオ環境で動作するようには設計されていません。
+
+ When applying decorrelation in the closed signal loop, introducing signal distortion is unavoidable, while decorrelation techniques in the adaptive filtering circuit are typically based on the assumption that the source signal is a speech signal.
+閉ループ・ループにおいて無相関を適用する場合、信号歪みを導入することは避けられないが、適応フィルタリング回路における無相関化技術は、通常、ソース信号が音声信号であるという仮定に基づいている。
+
+ Van Waterschoot and Moonen [110], [111] have recently proposed a novel PEM-based AFC method that is designed particularly for audio signals, but performs equally well in speech applications.
+Van Waterschoot and Moonen [110]、[111]は最近、特にオーディオ信号用に設計されたが、スピーチアプリケーションでも同様に優れた性能を持つPEMベースの新しいAFC法を提案した。
+
+ The method is based on a cascade of two source signal models, where one models the tonal components in the source signal and the other one models the source signal noise components.
+この方法は、2つのソース信号モデルのカスケードに基づいており、一方はソース信号のトーン成分をモデル化し、他方はソース信号ノイズ成分をモデル化する。
+
