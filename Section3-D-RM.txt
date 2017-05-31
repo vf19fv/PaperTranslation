@@ -1,4 +1,5 @@
 D. Room Modeling Methods
+部屋モデリング法
 
 In room modeling methods for acoustic feedback control, a model of the acoustic feedback path is identified either offline (during the initialization of the sound reinforcement system) or online (during the operation of the sound reinforcement system).
 音響フィードバック制御のための部屋モデリング方法では、音響フィードバック経路のモデルは、オフライン（音響設備の初期化中）またはオンライン（音響設備の動作中）のいずれかで識別される。

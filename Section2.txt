@@ -64,7 +64,7 @@ Since usually nonlinear dynamics processing (e.g., compression, limiting, etc.) 
 
 
 However, to be able to perform a stability analysis of the closed-loop system, we will mostly assume that the forward path can be modeled by a linear, time-varying transfer function, ∀i,j 
-しかし、閉ループシステムの安定性解析を実行できるようにするために、往路は線形の時間変化する伝達関数∀i,jによってモデル化することができ、
+しかし、閉ループシステムの安定性解析を実行できるようにするために、往路は線形の時間変化する伝達関数によってモデル化することができ、全てのi,jについて
 式(8)
 と
 式(9)
